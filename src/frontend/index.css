@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Fonts ───────────────────────────────────────────────── */
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-VariableFont_wght.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("/assets/fonts/CrimsonPro-VariableFont_wght.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/assets/fonts/InstrumentSerif-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+
+    /* ── Luxury Marble Palette (Light / Warm Ivory) ─────── */
+    --background:   0.97 0.008 80;      /* warm ivory / cream */
+    --foreground:   0.18 0.015 60;      /* deep charcoal-brown */
+
+    --card:         0.99 0.005 80;      /* near-white ivory */
+    --card-foreground: 0.18 0.015 60;
+
+    --popover:      0.99 0.005 80;
+    --popover-foreground: 0.18 0.015 60;
+
+    --primary:      0.55 0.12 75;       /* warm antique gold */
+    --primary-foreground: 0.99 0.005 80;
+
+    --secondary:    0.93 0.02 80;       /* soft parchment */
+    --secondary-foreground: 0.18 0.015 60;
+
+    --muted:        0.92 0.015 75;
+    --muted-foreground: 0.45 0.02 60;
+
+    --accent:       0.72 0.15 72;       /* bright gold accent */
+    --accent-foreground: 0.18 0.015 60;
+
+    --destructive:  0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border:       0.88 0.025 75;
+    --input:        0.90 0.02 75;
+    --ring:         0.55 0.12 75;
+
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    --sidebar: 0.97 0.008 80;
+    --sidebar-foreground: 0.18 0.015 60;
+    --sidebar-primary: 0.55 0.12 75;
+    --sidebar-primary-foreground: 0.99 0.005 80;
+    --sidebar-accent: 0.93 0.02 80;
+    --sidebar-accent-foreground: 0.18 0.015 60;
+    --sidebar-border: 0.88 0.025 75;
+    --sidebar-ring: 0.55 0.12 75;
+
+    /* ── Custom marble brand tokens ───────────────────────── */
+    --gold:         0.72 0.15 72;       /* rich gold */
+    --gold-dark:    0.52 0.13 70;       /* deep burnished gold */
+    --gold-light:   0.88 0.10 80;       /* pale champagne */
+    --ivory:        0.975 0.008 82;     /* creamy ivory */
+    --marble-white: 0.995 0.002 80;     /* pure marble white */
+    --deep-stone:   0.20 0.018 55;      /* dark stone charcoal */
+    --mid-stone:    0.40 0.015 58;      /* medium stone gray */
+    --warm-stone:   0.82 0.030 72;      /* warm stone beige */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Crimson Pro", Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ── Marble Brand Utilities ──────────────────────────────── */
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+  .font-serif-body {
+    font-family: "Crimson Pro", Georgia, serif;
+  }
+  .font-instrument {
+    font-family: "Instrument Serif", Georgia, serif;
+  }
+
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+  .text-gold-dark {
+    color: oklch(var(--gold-dark));
+  }
+  .bg-gold {
+    background-color: oklch(var(--gold));
+  }
+  .bg-gold-dark {
+    background-color: oklch(var(--gold-dark));
+  }
+  .bg-ivory {
+    background-color: oklch(var(--ivory));
+  }
+  .bg-marble-white {
+    background-color: oklch(var(--marble-white));
+  }
+  .bg-deep-stone {
+    background-color: oklch(var(--deep-stone));
+  }
+  .bg-warm-stone {
+    background-color: oklch(var(--warm-stone));
+  }
+  .border-gold {
+    border-color: oklch(var(--gold));
+  }
+  .border-gold-light {
+    border-color: oklch(var(--gold-light));
+  }
+
+  /* Elegant divider with gold gradient */
+  .gold-divider {
+    display: block;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      oklch(var(--gold)) 20%,
+      oklch(var(--gold)) 80%,
+      transparent
+    );
+    margin: 0 auto;
+  }
+
+  /* Subtle grain texture for richness */
+  .grain-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+  }
+
+  .section-fade {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .section-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Section heading tier ─────────────────────────────── */
+  .section-eyebrow {
+    display: block;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: oklch(var(--gold));
+    margin-bottom: 1rem;
+  }
+
+  .section-heading {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    color: oklch(var(--deep-stone));
+  }
+
+  /* 2px gold shelf for collection cards */
+  .card-shelf {
+    border-top: 2px solid oklch(var(--gold) / 0.35);
+  }
+
+  /* Hero text shadow for depth */
+  .hero-text-shadow {
+    text-shadow:
+      0 2px 24px rgba(20, 12, 2, 0.55),
+      0 1px 4px rgba(20, 12, 2, 0.35);
+  }
+}
